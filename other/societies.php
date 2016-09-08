@@ -3,45 +3,16 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Societies</title>
-        <link rel="shortcut icon" href="../assets/images/favicon.ico" />
-        <script><?php include "../assets/js/activities.js" ?></script>
-        <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="http://localhost:8084/ChemicalIsm/assets/css/bootstrap.min.css"/>
-        <link rel="stylesheet" type="text/css" href="../assets/css/navigation.css"/>
-        <link rel="stylesheet" type="text/css" href="../assets/css/Student.css" />
-        <script type="text/javascript" src="../assets/js/jquery.js"></script>
-        <script type="text/javascript" src="../assets/js/bootstrap.js"></script>
-        <script type="text/javascript">
-            function beingHovered(current) {
-                document.getElementById(current).style.visibility = 'visible';
-            }
-            function hoverEnded(current) {
-                document.getElementById(current).style.visibility = 'hidden';
-            }
-        </script>
+        <?php include './common_import.php' ?>
     </head>
     <body>
-        <div class="navigationLink" id="navigationLink"><a href="../index.jsp"></a><%= link %></div>
-        <div id="myAccountPopup" onmouseover="beingHovered('myAccountPopup')" onmouseout="hoverEnded('myAccountPopup')">
-            <div id="popupUserImg"><img src="<%= imgUrl %>"/></div>
-            <div id="popupUsername"><%= (String)session.getAttribute("ISMusername") %></div>
-            <div id="popupUserDeatils">
-                <div class="popupUserExtra" id="popupUserAccount">My Account</div>
-                <div class="popupUserExtra" id="popupChangePasssword">Change Password</div>
-            </div>
-        </div>
-
-
-        <?php include "nav.php" ?>
+        <?php include "./nav_link.php" ?>
+        <?php include "./nav.php" ?>
 
 
         <div class="container" id="try">
 
-            <div id="banner">
-                <div id="dept">CHEMICAL ENGINEERING</div>
-                <div id="clg">Indian School Of Mines, Dhanbad</div>
-            </div>
+            <?php include './banner.php' ?>
 
             <div class="pageHeading"> Societies </div>
 
