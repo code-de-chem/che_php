@@ -14,7 +14,7 @@
 
         <div class="container" id="try">
 
-            <?php include 'banner.php' ?>
+            <?php include './banner.php' ?>
 
             <div class="pageHeading"> Research </div>
             <div class="row">
@@ -29,7 +29,7 @@
             </div>    
             
             
-            <?php include "foot.php" ?>
+            <?php include "./foot.php" ?>
 
 
         </div>
