@@ -24,9 +24,9 @@
 </head>
 
 <body>
-    <div class="navigationLink" id="navigationLink"><a href="../index.jsp"></a> link  <span> log </span></div>
+    <div class="navigationLink" id="navigationLink"><a href="#"></a> link  <span> log </span></div>
         <div id="myAccountPopup" onmouseover="beingHovered('myAccountPopup')" onmouseout="hoverEnded('myAccountPopup')">
-            <div id="popupUserImg"><img src="<%= imgUrl %>"/></div>
+            <div id="popupUserImg"><img src=" imgUrl "/></div>
             <div id="popupUsername"> (String)session.getAttribute("ISMusername") </div>
             <div id="popupUserDeatils">
                 <div class="popupUserExtra" id="popupUserAccount">My Account</div>
@@ -54,24 +54,24 @@
                <b class="caret"></b>
             </a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="people">
-                <li><a href="jsp/Faculty.jsp" tabindex="-1">Faculty</a></li>
-                <li><a href="jsp/Students.jsp" tabindex="-1">Students</a></li>
+                <li><a href="other/Faculty.php" tabindex="-1">Faculty</a></li>
+                <li><a href="other/Students.php" tabindex="-1">Students</a></li>
             </ul>
          </li>
          <li class="dropdown">
             <a href="#" id="academics" class="dropdown-toggle" data-toggle="dropdown">Academics<b class="caret"></b></a>
             <ul class="dropdown-menu" role="menu" aria-labelledby="academics">
-                <li><a href="jsp/academics.jsp?acad=ug" tabindex="-1">Under Graduate</a></li>
-                <li><a href="jsp/academics.jsp?acad=honours" tabindex="-1">Honors</a></li>
-                <li><a href="jsp/academics.jsp?acad=minors" tabindex="-1">Minors</a></li>
-                <li><a href="jsp/academics.jsp?acad=pg" tabindex="-1">Post Graduate</a></li>
-                <li><a href="jsp/academics.jsp?acad=phd" tabindex="-1">PhD Programme</a></li>
+                <li><a href="other/academics.php?acad=ug" tabindex="-1">Under Graduate</a></li>
+                <li><a href="other/academics.php?acad=honours" tabindex="-1">Honors</a></li>
+                <li><a href="other/academics.php?acad=minors" tabindex="-1">Minors</a></li>
+                <li><a href="other/academics.php?acad=pg" tabindex="-1">Post Graduate</a></li>
+                <li><a href="other/academics.php?acad=phd" tabindex="-1">PhD Programme</a></li>
             </ul>
          </li>
-        <li><a href="jsp/activities.jsp">Activities</a></li>
-        <li><a href="jsp/research.jsp">Research</a></li>
-        <li><a href="jsp/societies.jsp">Societies</a></li>
-        <li><a href="jsp/AboutUs.jsp">About us</a></li>
+        <li><a href="other/activities.php">Activities</a></li>
+        <li><a href="other/research.php">Research</a></li>
+        <li><a href="other/societies.php">Societies</a></li>
+        <li><a href="other/AboutUs.php">About us</a></li>
       </ul>
    </div>
 </nav>  
@@ -234,6 +234,6 @@
     
 </body>
 <script type="text/javascript">
-    $('.carousel').carousel({interval: 3000})
+    $('.carousel').carousel({interval: 3000});
 </script>
 </html>
