@@ -24,10 +24,10 @@
 </head>
 
 <body>
-    <div class="navigationLink" id="navigationLink"><a href="../index.jsp"></a>< link  <span> log </span></div>
+    <div class="navigationLink" id="navigationLink"><a href="../index.jsp"></a> link  <span> log </span></div>
         <div id="myAccountPopup" onmouseover="beingHovered('myAccountPopup')" onmouseout="hoverEnded('myAccountPopup')">
             <div id="popupUserImg"><img src="<%= imgUrl %>"/></div>
-            <div id="popupUsername">< (String)session.getAttribute("ISMusername") </div>
+            <div id="popupUsername"> (String)session.getAttribute("ISMusername") </div>
             <div id="popupUserDeatils">
                 <div class="popupUserExtra" id="popupUserAccount">My Account</div>
                 <div class="popupUserExtra" id="popupChangePasssword">Change Password</div>
@@ -133,9 +133,9 @@
                     <div class="FirstHead">What is Chemical Engineering?</div>
                 <div id="definChemContent">
                 Chemical engineering is the profession in which a knowledge of mathematics, chemistry, and other natural sciences gained by study, experience, and practice is applied with judgment to develop economic ways of using materials and energy for the benefit of mankind. (AIChE)
-   		<%--<br/><br/>
+   		<!--<br/><br/>
                 Chemical Engineering is you, me and all that surrounds us! One must look beyond chemical reactors and distillation columns to realize that the food we consume, the cosmetics we wear, the detergent we wash our clothes with are all a result of engineering of materials and their chemical reactions. In this sense, Chemical Engineering is one of the broadest and the most ‘inclusive’ branches of engineering that keeps redefining itself as it finds applications into new areas of modern technology.
-                --%></div>
+                --></div>
             </div>
         </div>
     
@@ -237,7 +237,3 @@
     $('.carousel').carousel({interval: 3000})
 </script>
 </html>
-<%
-    
-    
-%>
