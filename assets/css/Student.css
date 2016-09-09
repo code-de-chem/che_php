@@ -16,7 +16,7 @@ ul>li{
     list-style-type: none;
     padding-bottom: 1%;
 }
-
+.required{color: tomato;}
 img{
     width: 100%;
     height: 100%;
@@ -24,7 +24,11 @@ img{
 .space-btm{
     margin-bottom: 5px;
 }
-
+.profile-pic > img{
+    max-height: 250px;
+}
+.display-none{display: none;}
+.display-block{display: block;}
 
 
 #banner{
@@ -159,40 +163,34 @@ table{
 
 
 
-#mainLoginISMStudent{
-border: 2px solid burlywood;
-    box-shadow: 0 7px 100px rgba(177, 87, 8, 0.7);
-    width: 16%;
-    min-height: 132px;
-    height: auto;
-    padding: 20px;
-    margin-top: 11%;
-    position: relative;
-    margin-left: 13%;
-    margin-bottom: 2%;
-    display: block;
-    text-align: justify;
-}
 .formRow{
     display: block;
     padding: 2%;
     padding-right: 7%;
 }
-#mainNewUser{
-border: 2px solid burlywood;
-    box-shadow: 0 7px 100px rgba(177, 87, 8, 0.7);
-    width: 33%;
-    min-height: 132px;
-    height: auto;
-    padding: 20px;
-    margin-top: -21%;
-    margin-left: 55%;
-    margin-bottom: 2%;
-    display: block;
-    position: relative;
-    text-align: justify;
+#mainLoginISMStudent input,#mainLoginISMStudent label,#mainNewUser input,#mainNewUser label{
+    padding: 1px;
+    margin: 1px;
+    min-width: 20%;
 }
-
+#mainLoginISMStudent{
+    padding-top: 5%;
+}
+#mainNewUser{
+    padding-left: 10%;
+    border-left: solid 1px black;
+}
+.loginHead{
+    padding-bottom: 10px;
+    color: firebrick;
+    font-weight: bolder;
+    font-size: 23px;
+}
+.loginArea{
+    padding: 50px 0px 0px 0px;
+    margin-left: 100px;
+    margin-bottom: 88px;
+}
 
 
 .studentPic{
@@ -205,13 +203,18 @@ border: 2px solid burlywood;
         padding-top: 2%;
 }
 #studentDetail{
-        margin-left: 15%;
-    margin-top: 2%;
+        margin-left: 5%;
+    margin-top: 3%;
     width: 70%;
-    padding-left: 6%;
+}
+#studentDetail td{
+    padding: 3px 2px 3px 10px;
 }
 .addDetails{
     margin-top: 8%;
+}
+.verified{
+    border: solid 2px darkseagreen;
 }
 .studentExtraDetails{
     border: 2px solid burlywood;
