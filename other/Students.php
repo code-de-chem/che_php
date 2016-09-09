@@ -43,15 +43,6 @@ $BASE_DIR = "../";
                     $result = $con->query($query);
                    $con->close();
 
-            }
-            catch (Exception $e){
-                echo 'We are sorry, Something went wrong. Please try after sometime. We appreciate your visit.<br>';
-                exit();
-            }
-?>      
-        
-<?php
-        try{
                 if ($result->num_rows > 0) {
 echo <<<END
     <div class="studentsHead">Please suffix username with '@ce.ism.ac.in' to get students email Id.</div>
