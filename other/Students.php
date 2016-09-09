@@ -39,7 +39,7 @@ $BASE_DIR = "../";
                 $con = new mysqli($host, $user, $password, $dbname, $port, $socket)
                             or die('Could not connect to the database server' . mysqli_connect_error());
                     $dir = $BASE_DIR . "assets/images/faculties/";
-                    $query = "select * from ismism.ism_user_info where ism_user_verified = 1";
+                    $query = "select * from ism_user_info where ism_user_verified = 1";
                     $result = $con->query($query);
                    $con->close();
 

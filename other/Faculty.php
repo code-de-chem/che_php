@@ -1,7 +1,19 @@
-<?php 
+<?php
 error_reporting(E_ALL ^ E_WARNING ^ E_NOTICE);
 include './xdgh84hj56/db_de_54sd4fd4fds.php';
 $BASE_DIR = "../";
+?>
+<?php
+$other = false;
+if (null !== filter_var($_GET["other"], FILTER_SANITIZE_STRING)) {
+    $other = filter_var($_GET["other"], FILTER_SANITIZE_STRING);
+    if (!($other === true || $other === false)) {
+    echo $other;
+        $other = false;
+    }
+} else {
+    $other = false;
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,6 +43,12 @@ $BASE_DIR = "../";
             }
             ;
         </script>
+<?php
+        echo $other.' reached';
+if($other===true){
+        echo '<script type="text/javascript">onDocumentLoad(otherClicked());</script>';
+}
+?>
     </head>
     <body>
         <?php include "./nav_link.php" ?>
@@ -53,27 +71,27 @@ $BASE_DIR = "../";
                 </div>
 
                 <div class="col-lg-10 mainFaculty row" id="mainFaculty">
-            <?php
-                try{
-                    $con = new mysqli($host, $user, $password, $dbname, $port, $socket)
-                            or die('Could not connect to the database server' . mysqli_connect_error());
-                    $dir = $BASE_DIR . "assets/images/faculties/";
-                    $query = "select * from ismism.faculties where type = 0";
-                    $result = $con->query($query);
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            $id = $row['faculties_id'];
-                            $name = $row['faculties_name'];
-                            $researchTopic = $row["faculties_research"];
-                            $designation = $row["faculties_designation"];
-                            $specialization = $row["faculties_specialization"];
-                            $contactEmail = $row["faculties_email"];
-                            if(file_exists($dir.$id.'.jpg')){
-                                $imgUrl = $dir.$id.'.jpg';
-                            }else{
-                                $imgUrl = $BASE_DIR.'assets/images/dp/default_male.jpg';
-                            }
-echo <<<END
+                    <?php
+                    try {
+                        $con = new mysqli($host, $user, $password, $dbname, $port, $socket)
+                                or die('Could not connect to the database server' . mysqli_connect_error());
+                        $dir = $BASE_DIR . "assets/images/faculties/";
+                        $query = "select * from faculties where type = 0";
+                        $result = $con->query($query);
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) {
+                                $id = $row['faculties_id'];
+                                $name = $row['faculties_name'];
+                                $researchTopic = $row["faculties_research"];
+                                $designation = $row["faculties_designation"];
+                                $specialization = $row["faculties_specialization"];
+                                $contactEmail = $row["faculties_email"];
+                                if (file_exists($dir . $id . '.jpg')) {
+                                    $imgUrl = $dir . $id . '.jpg';
+                                } else {
+                                    $imgUrl = $BASE_DIR . 'assets/images/dp/default_male.jpg';
+                                }
+                                echo <<<END
                 <div class = "col-lg-6 col-md-6 col-sm-6 col-xs-6 professor">
                     <div class = "image thumbnail"><img src = "$imgUrl"/></div>
                     <div class = "professorName"> $name </div>
@@ -86,28 +104,27 @@ echo <<<END
                     -->
                 </div>
 END;
+                            }
+                        } else {
+                            echo 'We are sorry, Something went wrong. Please try after sometime. We appreciate your visit.<br>';
                         }
-                    } else {
+                        $con->close();
+                    } catch (Exception $e) {
                         echo 'We are sorry, Something went wrong. Please try after sometime. We appreciate your visit.<br>';
                     }
-                    $con->close();
-                }
-                catch (Exception $e){
-                    echo 'We are sorry, Something went wrong. Please try after sometime. We appreciate your visit.<br>';
-                }
-                    
-       ?>     
-                
+                    ?>     
+
                 </div>
 
-                    <div id = "otherFaculty">
+                <div id = "otherFaculty">
                     This section is under other Faculty
-                    </div>
-                    </div>
-
-
-                    <?php include './foot.php'?>      
-
                 </div>
-                </body>
-                </html>
+            </div>
+
+
+<?php include './foot.php' ?>      
+
+        </div>
+
+    </body>
+</html>

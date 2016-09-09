@@ -4,12 +4,19 @@ include './xdgh84hj56/db_de_54sd4fd4fds.php';
 $BASE_DIR = "../";
 ?>
 <?php
+$flag = false;
+$dir = $BASE_DIR . "assets/images/students/";
 if (null!==filter_var($_GET["id"], FILTER_SANITIZE_STRING)) {
     $id = filter_var($_GET["id"], FILTER_SANITIZE_STRING);
+    if(file_exists($dir.$id.'.jpg')){
+        $imgUrl = $dir.$id.'.jpg';
+    }else{
+        $imgUrl = $BASE_DIR.'assets/images/dp/default_male.jpg';
+    }
 } else {
     header($prevUrl);
 }
-$flag = false;
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,15 +34,15 @@ $flag = false;
         <div class="container" id="try"> 
 
             <?php include './banner.php' ?>    
-            <div class="pageHeading"> Students </div>
+            <div class="pageHeading"> Student Profile </div>
 
             <div class="row">
                 <?php
                 try {
                     $con = new mysqli($host, $user, $password, $dbname, $port, $socket)
                             or die('Could not connect to the database server' . mysqli_connect_error());
-                    $dir = $BASE_DIR . "assets/images/faculties/";
-                    $query = "Select * from ismism.ism_user_info where ism_admission_no = '" . trim($id)."'";
+                    
+                    $query = "Select * from ism_user_info where ism_admission_no = '" . trim($id)."'";
                     $result = $con->query($query);
                     if ($result->num_rows > 0) {
                        
@@ -51,13 +58,18 @@ $flag = false;
                                 $minors = $row["ism_user_minor"];
                                 if ($honours == 1) {
                                     $honour = "YES";
+                                }else{
+                                    $honour = "NA";
                                 }
                                 if ($minors == 1) {
                                     $minor = $row["ism_user_minor_info"];
+                                }else{
+                                    $minor = "NA";
                                 }
                                 echo <<<END
-                                <div class="col-lg-3 thumbnail"><img src=" $imgUrl " /></div>
-                                <div class="col-lg-9">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-3 thumbnail profile-pic"><img src=" $imgUrl " /></div>
+                                <div class="col-lg-8">
                 <table id="studentDetail">
                     <tr><td>Name:</td> <td> $name </td></tr>
                     <tr><td>ISM Email:</td> <td> $email </td></tr>
@@ -76,15 +88,15 @@ END;
                     echo 'We are sorry, Something went wrong. Please try after sometime. We appreciate your visit.<br>';
                     exit();
                 }
-                
+                echo '</div>';    
                 if ($flag) {
-                    $query = "Select * from ismism.ism_user_details where ism_user_admission_no = " . $id;
+                    $query = "Select * from ism_user_details where ism_user_admission_no = '" . $id."'";
                     $result = $con->query($query);
                     $con->close();
                     if($result->num_rows>0){
-                        while ($row = $result->fetch_assoc) {
+                        while ($row = $result->fetch_assoc()) {
                             $data = $row["ism_user_details_data"];
-                            echo '<div class="well">';
+                            echo '<div class="well verified">';
                             echo '<div>'. $data. '</div>';
                             echo '</div>';
                         }
@@ -115,7 +127,7 @@ END;
                 
                 }
                 -->
-            </div>
+            
 
             <?php include "./foot.php" ?>
 

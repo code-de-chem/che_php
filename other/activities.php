@@ -4,6 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Activities</title>
         <?php include './common_import.php' ?>
+        <script type="text/javascript" src="../assets/js/activities.js" ></script>
     </head>
     <body>
         <?php include "./nav_link.php" ?>
