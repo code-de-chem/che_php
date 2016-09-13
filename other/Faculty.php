@@ -4,15 +4,14 @@ include './xdgh84hj56/db_de_54sd4fd4fds.php';
 $BASE_DIR = "../";
 ?>
 <?php
-$other = false;
+$other = 'false';
 if (null !== filter_var($_GET["other"], FILTER_SANITIZE_STRING)) {
     $other = filter_var($_GET["other"], FILTER_SANITIZE_STRING);
-    if (!($other === true || $other === false)) {
-    echo $other;
-        $other = false;
+    if (!($other === 'true' || $other === 'false')) {
+        $other = 'false';
     }
 } else {
-    $other = false;
+    $other = 'false';
 }
 ?>
 <!DOCTYPE html>
@@ -43,12 +42,7 @@ if (null !== filter_var($_GET["other"], FILTER_SANITIZE_STRING)) {
             }
             ;
         </script>
-<?php
-        echo $other.' reached';
-if($other===true){
-        echo '<script type="text/javascript">onDocumentLoad(otherClicked());</script>';
-}
-?>
+
     </head>
     <body>
         <?php include "./nav_link.php" ?>
@@ -125,6 +119,10 @@ END;
 <?php include './foot.php' ?>      
 
         </div>
-
+<?php
+if($other==='true'){
+        echo '<script type="text/javascript">otherClicked();</script>';
+}
+?>
     </body>
 </html>

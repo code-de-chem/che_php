@@ -29,7 +29,7 @@ $BASE_DIR = "../";
                 <ul>
                     <li id="faculty_link" class="btn-lg btn-link"><a href="Faculty.php">Faculty</a></li>
                     <li id="students_link" class="btn-lg btn-info"><a href="#">Students</a></li>
-                    <li id="others_link" class="btn-lg btn-link"><a href="Faculty.php">Others</a></li>
+                    <li id="others_link" class="btn-lg btn-link"><a href="Faculty.php?other=true">Others</a></li>
                 </ul>
             </div>
             
@@ -38,7 +38,6 @@ $BASE_DIR = "../";
             try{
                 $con = new mysqli($host, $user, $password, $dbname, $port, $socket)
                             or die('Could not connect to the database server' . mysqli_connect_error());
-                    $dir = $BASE_DIR . "assets/images/faculties/";
                     $query = "select * from ism_user_info where ism_user_verified = 1";
                     $result = $con->query($query);
                    $con->close();
@@ -68,7 +67,7 @@ END;
                     }
                 }
                 else {
-                    echo 'We are sorry, Something went wrong. Please try after sometime. We appreciate your visit.<br>';
+                    echo 'We are sorry, Something went wrong. Please try after sometime. We appreciate your visit this.<br>';
                 }
         }
         catch(Exception $e){
