@@ -18,16 +18,21 @@
 
 
             <div class="row">
-                <div class="mainPlacements">
-                    <div class="contentPlacements">
-                        Meritorious students who successfully complete BTech program with flying colours are likely to be placed in reputed firms such as Haliburton, SchlumBurger, BHEL, BOC India, BPCL, Coal India, Dr. Reddy’s, DRDO, Fluent India, Fluidyn, Foster Wheeler, GE India Technology, GAIL India, GM, Honeywell, IOCL, Ispat Industries, ISRO, ITC, Jindal, NALCO, OIL India, ONGC, RCF, Reliance, SAIL, Tata Chemicals, Tata Steel, Tridiagonal Solutions, Vedanta, etc
-                        <br/><br/> In Academic years 2014-15 several reputed companies visited campus.<br/><br/>
-                        The Highest package offered was 10.6 LPA.<br/><br/>
-                        The Average package offered was 6.4 LPA.
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8">
+                    <div>
+                        This is nothing just dummy.
+                        <div>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </div>
+                        <div>
+                            Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum. Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet nec, commodo eget, consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet, felis nisl adipiscing sapien, sed malesuada diam lacus eget erat. Cras mollis scelerisque nunc. Nullam arcu. Aliquam consequat. Curabitur augue lorem, dapibus quis, laoreet et, pretium ac, nisi. Aenean magna nisl, mollis quis, molestie eu, feugiat in, orci. In hac habitasse platea dictumst.
+                        </div>
+
 
                     </div>
                 </div>
-            </div>    
+            </div>   
 
 
             <?php include "foot.php" ?>
