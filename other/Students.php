@@ -65,6 +65,7 @@ END;
                         echo '<td>'. $stud_email_id.'</td>';
                         echo '</tr>';
                     }
+                    echo '</table></div>';
                 }
                 else {
                     echo 'We are sorry, Something went wrong. Please try after sometime. We appreciate your visit this.<br>';
@@ -75,15 +76,14 @@ END;
         }
                 
         ?>
-        </table>
         </div>
             </div>
 
-    </div>
         
     <?php include './foot.php'?>
-
-
     </div>
+        
+
+
     </body>
 </html>

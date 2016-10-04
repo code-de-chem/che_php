@@ -6,18 +6,15 @@ $BASE_DIR = "../";
 <?php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-}else{
-    session_destroy();
-    session_start();
 }
 $_SESSION["loggedin"] = 0;
 $dir = $BASE_DIR . "assets/images/students/";
-$loginErrMsg = "";
-$ismEmail = "";
-$contactNo = "";
-$newregNo = "";
-$username = "";
-$alternateEmail = "";
+$_SESSION["loginErrMsg"] = "";
+$_SESSION["ismEmail"] = "";
+$_SESSION["contactNo"] = "";
+$_SESSION["newregNo"] = "";
+$_SESSION["username"] = "";
+$_SESSION["alternateEmail"] = "";
 if (null !== filter_var($_POST["login"], FILTER_SANITIZE_STRING)) {
 
     $id = filter_var($_POST["login"], FILTER_SANITIZE_STRING);
@@ -26,7 +23,7 @@ if (null !== filter_var($_POST["login"], FILTER_SANITIZE_STRING)) {
         $pass = filter_var($_POST["password"], FILTER_SANITIZE_STRING);
         if ($regNo !== "" && $pass !== "") {
             $con = new mysqli($host, $user, $password, $dbname, $port, $socket)
-                    or die('Could not connect to the database server' . mysqli_connect_error());
+                    or header('location: student_login.php');
             $query = "Select * from ism_user_info where ism_admission_no ='" . $regNo . "'and ism_user_password = '" . $pass . "'";
             $result = $con->query($query);
             if ($result->num_rows > 0) {
@@ -41,29 +38,32 @@ if (null !== filter_var($_POST["login"], FILTER_SANITIZE_STRING)) {
                             $imgUrl = $BASE_DIR . 'assets/images/dp/default_male.jpg';
                         }
                         $_SESSION["imgUrl"] = $imgUrl;
+                        header('location: Students.php');
                     }
                 }
             } else {
-                $loginErrMsg = "Invalid username or password.";
+                $_SESSION["loginErrMsg"] = "Invalid username or password.";
+                header('location: student_login.php');
             }
         } else {
-            $loginErrMsg = "Invalid username or password.";
+            $_SESSION["loginErrMsg"] = "Invalid username or password.";
+            header('location: student_login.php');
         }
     } else if ($id === "new") {
-        $newregNo = filter_var($_POST["newregNo"], FILTER_SANITIZE_STRING);
-        if ($newregNo === "" || strlen($newregNo) < 10) {
+        $_SESSION["newregNo"] = filter_var($_POST["newregNo"], FILTER_SANITIZE_STRING);
+        if ($_SESSION["newregNo"] === "" || strlen($_SESSION["newregNo"]) < 10) {
             $errReg = "Invalid registration No.";
         }
-        $username = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
-        if ($username === "" || strlen($username) < 3) {
+        $_SESSION["username"] = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
+        if ($_SESSION["username"] === "" || strlen($_SESSION["username"]) < 3) {
             $errUser = "Invalid Name, must be more than 2 chars";
         }
-        $ismEmail = filter_var($_POST["ismEmail"], FILTER_SANITIZE_STRING);
-        if ($ismEmail === "" || strlen($ismEmail) < 5 || strpos($ismEmail, "@") < 0) {
+        $_SESSION["ismEmail"] = filter_var($_POST["ismEmail"], FILTER_SANITIZE_STRING);
+        if ($_SESSION["ismEmail"] === "" || strlen($_SESSION["ismEmail"]) < 5 || strpos($_SESSION["ismEmail"], "@") < 0) {
             $errISMEmail = "Invalid email";
         }
-        $alternateEmail = filter_var($_POST["alternateEmail"], FILTER_SANITIZE_STRING);
-        if ($alternateEmail === "" || strlen($alternateEmail) < 5 || strpos($alternateEmail, "@") < 0) {
+        $_SESSION["alternateEmail"] = filter_var($_POST["alternateEmail"], FILTER_SANITIZE_STRING);
+        if ($_SESSION["alternateEmail"] === "" || strlen($_SESSION["alternateEmail"]) < 5 || strpos($_SESSION["alternateEmail"], "@") < 0) {
             $errAEmali = "Invalid email";
         }
         $honours = filter_var($_POST["honours"], FILTER_SANITIZE_STRING);
@@ -79,8 +79,8 @@ if (null !== filter_var($_POST["login"], FILTER_SANITIZE_STRING)) {
             $minors = 0;
         }
         $minorBranchInfo = filter_var($_POST["minorBranchInfo"], FILTER_SANITIZE_STRING);
-        $contactNo = filter_var($_POST["contactNo"], FILTER_SANITIZE_STRING);
-        if ($contactNo === "" || strlen($contactNo) < 10) {
+        $_SESSION["contactNo"] = filter_var($_POST["contactNo"], FILTER_SANITIZE_STRING);
+        if ($_SESSION["contactNo"] === "" || strlen($_SESSION["contactNo"]) < 10) {
             $errContact = "Invalid mobile no, must be 10 digits";
         }
         $newpassword = filter_var($_POST["newpassword"], FILTER_SANITIZE_STRING);
@@ -98,23 +98,26 @@ if (null !== filter_var($_POST["login"], FILTER_SANITIZE_STRING)) {
         if (!$errReg && !$errUser && !$errISMEmail && !$errAEmali && !$errContact && !$errPass) {
             try {
                 $con = new mysqli($host, $user, $password, $dbname, $port, $socket)
-                        or die('Could not connect to the database server' . mysqli_connect_error());
+                        or header('location: student_login.php');
                 $query = "INSERT INTO `ism_user_info` (`ism_admission_no`,`ism_user_name`, `ism_user_email`, `ism_alternate_email`, `ism_user_honours`, `ism_user_minor`, `ism_user_minor_info`, `ism_user_contact_no`, `ism_user_gender`, `ism_user_password`, `ism_user_is_teacher`, `ism_user_verified`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
                 $stmt = $con->prepare($query);
-                $stmt_bind = $stmt->bind_param('ssssiisiisii', $newregNo, $username, $ismEmail, $alternateEmail, $honours, $minors, $minorBranchInfo, $contactNo, $sex, $newpassword, $zero, $one);
+                $stmt_bind = $stmt->bind_param('ssssiisiisii', $_SESSION["newregNo"], $_SESSION["username"], $_SESSION["ismEmail"], $_SESSION["alternateEmail"], $honours, $minors, $minorBranchInfo, $_SESSION["contactNo"], $sex, $newpassword, $zero, $one);
 
                 if ($stmt->execute()) {
                     $_SESSION["loggedin"] = 1;
-                    $_SESSION["regNo"] = $newregNo;
-                    $_SESSION["username"] = $username;
+                    $_SESSION["regNo"] = $_SESSION["newregNo"];
+                    $_SESSION["username"] = $_SESSION["username"];
                     $imgUrl = $BASE_DIR . 'assets/images/dp/default_male.jpg';
                     $_SESSION["imgUrl"] = $imgUrl;
+                    header('location: Students.php');
                 } else {
                     echo 'Sorry, Error in registration, please contact web Administrator or try Again.<br>';
                 }
             } catch (Exception $e) {
                 echo 'Something went wrong please try again later.<br>';
             }
+        }else{
+            header('location: student_login.php');
         }
     }
 }
@@ -138,8 +141,8 @@ if (null !== filter_var($_POST["login"], FILTER_SANITIZE_STRING)) {
     <div class="col-lg-4" id="mainLoginISMStudent">
         <div class="loginHead">Already Have Account? Login</div>
         <?php
-        if ($loginErrMsg !== "") {
-            echo '<div class="required" id="loginError">' . $loginErrMsg . '</div>';
+        if ($_SESSION["loginErrMsg"] !== "") {
+            echo '<div class="required" id="loginError">' . $_SESSION["loginErrMsg"] . '</div>';
         }
         ?>
         <form name="loginForm" id="loginForm" action="stud_login_form.php" method="post">
@@ -167,8 +170,8 @@ if (null !== filter_var($_POST["login"], FILTER_SANITIZE_STRING)) {
                 <div class="row">
                     <div class="col-lg-3"><label for="newregNo">Registration Number:<span class="required">*</span></label></div>
                     <div class="col-lg-6"><input type="text" name="newregNo" id="newregNo" required="Required" value="<?php
-                                                 if ($newregNo) {
-                                                     echo $newregNo;
+                                                 if ($_SESSION["newregNo"]) {
+                                                     echo $_SESSION["newregNo"];
                                                  }
                                                  ?>"/></div>
                     <div class="col-lg-3 required" id="errReg">
@@ -182,8 +185,8 @@ if ($errReg) {
                 <div class="row">
                     <div class="col-lg-3"><label for="username">Name:<span class="required">*</span></label></div>
                     <div class="col-lg-6"><input type="text" name="username" id="username" required="Required" value="<?php
-                        if ($username) {
-                            echo $username;
+                        if ($_SESSION["username"]) {
+                            echo $_SESSION["username"];
                         }
                         ?>"/></div>
                     <div class="col-lg-3 required" id="errUser">
@@ -197,8 +200,8 @@ if ($errUser) {
                 <div class="row">
                     <div class="col-lg-3"><label for="ismEmail">ISM email:<span class="required">*</span></label></div>
                     <div class="col-lg-6"><input type="text" name="ismEmail" id="ismEmail" required="Required" value="<?php
-                        if ($ismEmail) {
-                            echo $ismEmail;
+                        if ($_SESSION["ismEmail"]) {
+                            echo $_SESSION["ismEmail"];
                         }
                         ?>"/></div>
                     <div class="col-lg-3 required" id="errISMEmail">
@@ -212,8 +215,8 @@ if ($errUser) {
                 <div class="row">
                     <div class="col-lg-3"><label for="alternateEmail">Alternate Email:<span class="required">*</span></label></div>
                     <div class="col-lg-6"><input type="text" name="alternateEmail" id="alternateEmail" required="Required" value="<?php
-                        if ($alternateEmail) {
-                            echo $alternateEmail;
+                        if ($_SESSION["alternateEmail"]) {
+                            echo $_SESSION["alternateEmail"];
                         }
                         ?>"/></div>
                     <div class="col-lg-3 required" id="errAEmali">
@@ -238,9 +241,9 @@ if ($errAEmali) {
                 </div>
                 <div class="row">
                     <div class="col-lg-3"><label for="contactNo">Contact Number:<span class="required">*</span></label></div>
-                    <div class="col-lg-6"><input type="text" name="contactNo" id="contactNo" autocomplete="off" required="Required" value="<?php
-if ($contactNo) {
-    echo $contactNo;
+                    <div class="col-lg-6"><input type="text" name="contactNo" id="contactNo" required="Required" value="<?php
+if ($_SESSION["contactNo"]) {
+    echo $_SESSION["contactNo"];
 }
 ?>"/></div>
                     <div class="col-lg-3 required" id="errContact">

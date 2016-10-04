@@ -46,7 +46,7 @@ echo <<<END
 END;
 }else{
 echo <<<END
-    <div class="navigationLink" id="navigationLink"><span class="glyphicon glyphicon-user"> </span><a href="student_login.php"> login/signup</a></div>
+    <div class="navigationLink" id="navigationLink"><span class="glyphicon glyphicon-user"> </span><a href="other/student_login.php"> login/signup</a></div>
 END;
 }
 ?>
@@ -99,10 +99,10 @@ END;
 
 <div id="banner">
     <div id="dept">CHEMICAL ENGINEERING</div>
-    <div id="clg">Indian School Of Mines, Dhanbad</div>
+    <div id="clg">Indian Institute of Technology (Indian School Of Mines) Dhanbad</div>
 </div>
 
-            <div class="marquee"><span>This is a marquee</span></div>
+            <div class="marquee"><span>This is a for upcoming big events</span></div>
             
 
 <div id="myCarousel" class="carousel slide" data-interval="7000">

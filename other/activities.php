@@ -106,7 +106,7 @@
                 </div>
 
 
-                <div class="col-lg-2 linkToGallery"><a href="Gallery.jsp">Gallery</a></div>
+                <div class="col-lg-2 linkToGallery"><a href="gallery.php">Gallery</a></div>
             </div>    
 
 
